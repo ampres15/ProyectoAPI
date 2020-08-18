@@ -10,4 +10,4 @@ sequelize.authenticate().then(() => {
     console.error('Unable to connect to the database:', err);
 });
 app.get('/', (req, res) => res.json({message: 'test api'}))
-app.listen(port, () => console.log(`ejecutando api en puerto ${port}`))
+app.listen(port, () => console.log(`Ejecutando api en puerto ${port}`))
