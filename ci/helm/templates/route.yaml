@@ -1,0 +1,34 @@
+{{- if .Values.routes.enabled -}}
+{{- $fullName := include "backend.fullname" . -}}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "backend.labels" . | nindent 4 }}
+  {{- with .Values.routes.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  host: {{ .Values.routes.host }}
+  path: {{ .Values.routes.path }}
+  port:
+{{- range $key, $portSpec := .Values.containerPorts }}
+   {{- if not $portSpec.disabled }}
+    targetPort: {{ $key }}
+   {{- end }}
+{{- end }}
+  to:
+    kind: Service
+    name: {{ include "backend.fullname" . }}
+    weight: 100
+{{- if .Values.routes.tls }}
+  tls:
+    {{- range .Values.routes.tls }}
+    termination: {{ .termination }}
+    {{- end }}
+{{- end }}
+status:
+  ingress: []
+{{- end }}
