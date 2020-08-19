@@ -1,0 +1,4 @@
+DOCKER_TAG=docker.krugernetes.com/ec.com.smx.publix/krg-nodejs-skeleton-services:0-git${GIT_COMMIT}-master
+
+docker-build-image:
+	docker build --no-cache -t $(DOCKER_TAG) -f ci/docker/Dockerfile .

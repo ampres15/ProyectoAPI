@@ -1,0 +1,9 @@
+assemble:
+	npm run build
+
+clean:
+	-rm -rf node_modules
+	npm install
+
+run:
+	npm start
