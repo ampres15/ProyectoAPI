@@ -1,6 +1,6 @@
 apiVersion: v2
-name: pronaca-grain-supply-administration-service
-description: A Helm chart for Kubernetes at pronaca-grain-supply-administration-service
+name: presentacion
+description: A Helm chart for Kubernetes at presentacion
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -15,7 +15,6 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 version: 1.0.0
-icon: https://bitbucket.org/krugerdev/pronaca-grain-supply-configurations-service/raw/HEAD/helm/icon.png
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.

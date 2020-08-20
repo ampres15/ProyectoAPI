@@ -5,27 +5,33 @@ const jsonParser = bodyParser.json();
 // create application/x-www-form-urlencoded parser
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 const app = express()
-<<<<<<< HEAD
-const port = 8081
-=======
-//const sequelize = new Sequelize('postgres://postgres:admin@mbmpru01.pronaca.com:30576/postgres')
-const sequelize = new Sequelize('postgres://postgres:admin@localhost:5432/postgres')
+//const sequelize = new Sequelize('postgres://postgres:admin@localhost:5432/postgres')
+
+const sequelize = new Sequelize('postgres://postgres:admin@mbmpru01.pronaca.com:30576/postgres')
+
+
+const userinput = 'test'
+//
+const pg = require('pg');
+const pgConnection = new pg.Client({ host: 'admin@mbmpru01.pronaca.com:30576', user: 'postgres', password: 'admin', database: 'postgres' });
+pgConnection.connect();
+pgConnection.query('SELECT * FROM users WHERE id = ' + userinput, (err, res) => {}); // Sensitive
+
+
+
 const cors = require('cors')
 app.use(cors())
 const router = express.Router();
 app.use('/api', router);
 const port = 8080
->>>>>>> version0.0.1
 app.use(express.json());
 sequelize.authenticate().then(() => {
     console.log('Connection has been established successfully.');
 }).catch(err => {
     console.error('Unable to connect to the database:', err);
 });
-<<<<<<< HEAD
 app.get('/', (req, res) => res.json({message: 'test api'}))
 app.listen(port, () => console.log(`Ejecutando api en puerto ${port}`))
-=======
 const User = sequelize.define('user', {
     firstName: {
         type: Sequelize.STRING,
@@ -76,4 +82,3 @@ router.get('/users', async (req, res) => {
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
->>>>>>> version0.0.1
